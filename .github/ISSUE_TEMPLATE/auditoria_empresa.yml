@@ -1,85 +1,102 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Madurez IA</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; color: #333; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        h1 { color: #8B0000; text-align: center; }
-        .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
-        .control-group { background: #fff5f5; padding: 15px; border-radius: 8px; border-left: 5px solid #8B0000; }
-        label { display: block; font-weight: bold; margin-bottom: 10px; }
-        input[type="range"] { width: 100%; accent-color: #8B0000; }
-        .chart-container { position: relative; height: 400px; width: 100%; }
-        .btn-print { background: #8B0000; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; float: right; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <button class="btn-print" onclick="window.print()">Descargar PDF</button>
-    <h1>Auditoría Dinámica de Madurez IA</h1>
-    <p>Ajusta los niveles según el hallazgo en la empresa para ver el diagnóstico visual:</p>
-
-    <div class="controls">
-        <div class="control-group">
-            <label>Infraestructura de Datos</label>
-            <input type="range" id="infra" min="1" max="5" value="2" oninput="updateChart()">
-        </div>
-        <div class="control-group">
-            <label>Calidad de Registros</label>
-            <input type="range" id="datos" min="1" max="5" value="1" oninput="updateChart()">
-        </div>
-        <div class="control-group">
-            <label>Talento Humano</label>
-            <input type="range" id="talento" min="1" max="5" value="3" oninput="updateChart()">
-        </div>
-        <div class="control-group">
-            <label>Integración (APIs)</label>
-            <input type="range" id="api" min="1" max="5" value="1" oninput="updateChart()">
-        </div>
-    </div>
-
-    <div class="chart-container">
-        <canvas id="radarChart"></canvas>
-    </div>
-</div>
-
-<script>
-    let ctx = document.getElementById('radarChart').getContext('2d');
-    let myChart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: ['Infraestructura', 'Calidad de Datos', 'Talento Humano', 'Integración APIs', 'Estrategia IA'],
-            datasets: [{
-                label: 'Nivel de Madurez Actual',
-                data: [2, 1, 3, 1, 2],
-                backgroundColor: 'rgba(139, 0, 0, 0.2)',
-                borderColor: 'rgba(139, 0, 0, 1)',
-                borderWidth: 3,
-                pointBackgroundColor: '#8B0000'
-            }]
-        },
-        options: {
-            scales: {
-                r: { min: 0, max: 5, ticks: { stepSize: 1 } }
-            }
-        }
-    });
-
-    function updateChart() {
-        myChart.data.datasets[0].data = [
-            document.getElementById('infra').value,
-            document.getElementById('datos').value,
-            document.getElementById('talento').value,
-            document.getElementById('api').value,
-            (parseInt(document.getElementById('infra').value) + parseInt(document.getElementById('datos').value)) / 2
-        ];
-        myChart.update();
-    }
-</script>
-</body>
-</html>
+name: Auditoría de Madurez IA
+description: Registra una auditoría de madurez en IA para una empresa
+title: "Auditoría IA - [Nombre Empresa]"
+labels: ["auditoría", "madurez-ia"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Auditoría Dinámica de Madurez IA
+        Completa esta auditoría evaluando los niveles de madurez en IA de la empresa (escala 1-5)
+  
+  - type: input
+    id: empresa
+    attributes:
+      label: Nombre de la Empresa
+      placeholder: "Ej: Acme Corporation"
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: infraestructura
+    attributes:
+      label: Infraestructura de Datos
+      description: Nivel de madurez de la infraestructura de datos
+      options:
+        - "1 - Muy Bajo"
+        - "2 - Bajo"
+        - "3 - Medio"
+        - "4 - Alto"
+        - "5 - Muy Alto"
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: calidad_datos
+    attributes:
+      label: Calidad de Registros
+      description: Nivel de calidad de los datos registrados
+      options:
+        - "1 - Muy Bajo"
+        - "2 - Bajo"
+        - "3 - Medio"
+        - "4 - Alto"
+        - "5 - Muy Alto"
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: talento_humano
+    attributes:
+      label: Talento Humano
+      description: Nivel de capacidad en talento humano para IA
+      options:
+        - "1 - Muy Bajo"
+        - "2 - Bajo"
+        - "3 - Medio"
+        - "4 - Alto"
+        - "5 - Muy Alto"
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: integracion_apis
+    attributes:
+      label: Integración (APIs)
+      description: Nivel de integración y APIs disponibles
+      options:
+        - "1 - Muy Bajo"
+        - "2 - Bajo"
+        - "3 - Medio"
+        - "4 - Alto"
+        - "5 - Muy Alto"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: hallazgos
+    attributes:
+      label: Hallazgos Principales
+      description: Describe los hallazgos principales de la auditoría
+      placeholder: "Detalla los hallazgos clave encontrados durante la auditoría..."
+    validations:
+      required: true
+  
+  - type: textarea
+    id: recomendaciones
+    attributes:
+      label: Recomendaciones
+      description: Proporciona recomendaciones para mejorar la madurez en IA
+      placeholder: "Sugiere las mejoras necesarias..."
+    validations:
+      required: false
+  
+  - type: checkboxes
+    id: verificacion
+    attributes:
+      label: Verificación
+      options:
+        - label: "He completado la auditoría de forma exhaustiva"
+          required: true
+        - label: "Los datos proporcionados son precisos"
+          required: true
