@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Auditoría de Madurez Tecnológica - La Casa Libertadoras</title>
+<style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        @page {
+            size: A4;
+            margin: 18mm 15mm;
+            @bottom-right {
+                content: "Página " counter(page) " de " counter(pages);
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 8pt;
+                color: #8c8c8c;
+            }
+            @bottom-left {
+                content: "La Casa Libertadoras - Diagnóstico Tecnológico e IA";
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 8pt;
+                color: #8c8c8c;
+            }
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #2c2c2c;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        /* Encabezado Principal */
+        .header-container {
+            border-bottom: 3px solid #8B0000;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+        .company-name {
+            font-size: 20pt;
+            font-weight: bold;
+            color: #8B0000;
+            text-transform: uppercase;
+            margin: 0 0 4px 0;
+            letter-spacing: 0.5px;
+        }
+        .doc-title {
+            font-size: 13pt;
+            font-weight: 600;
+            color: #4a4a4a;
+            margin: 0 0 10px 0;
+        }
+
+        /* Ficha Técnica de la Empresa */
+        .metadata-table {
+            display: table;
+            width: 100%;
+            margin-bottom: 25px;
+            border-collapse: collapse;
+            background-color: #FCF9F7;
+            border: 1px solid #EADCD3;
+        }
+        .metadata-row {
+            display: table-row;
+        }
+        .metadata-cell {
+            display: table-cell;
+            padding: 8px 12px;
+            border: 1px solid #EADCD3;
+            vertical-align: top;
+        }
+        .metadata-label {
+            font-weight: bold;
+            color: #8B0000;
+            width: 20%;
+            font-size: 9pt;
+            text-transform: uppercase;
+        }
+        .metadata-value {
+            font-size: 9.5pt;
+            color: #333333;
+        }
+
+        /* Secciones */
+        h2 {
+            font-size: 13pt;
+            color: #8B0000;
+            border-left: 4px solid #CD5C5C;
+            padding-left: 8px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            page-break-after: avoid;
+        }
+
+        /* Tablas de Evaluación */
+        .eval-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .eval-table th {
+            background-color: #8B0000;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 9pt;
+            text-transform: uppercase;
+            padding: 10px 8px;
+            border: 1px solid #5C0000;
+            text-align: center;
+        }
+        .eval-table td {
+            border: 1px solid #EADCD3;
+            padding: 10px 8px;
+            font-size: 9pt;
+            vertical-align: top;
+        }
+        .eval-table tr:nth-child(even) {
+            background-color: #FDFCFB;
+        }
+
+        .input-block {
+            border: 1px dashed #CD5C5C;
+            background-color: #FFFDFB;
+            min-height: 45px;
+            margin-top: 5px;
+            padding: 6px;
+            color: #777;
+            font-style: italic;
+            font-size: 8.5pt;
+        }
+        .score-box {
+            border: 1px solid #CD5C5C;
+            width: 40px;
+            height: 25px;
+            text-align: center;
+            margin: 5px auto 0 auto;
+            background-color: #fff;
+        }
+
+        .guide-box {
+            background-color: #F7FAFC;
+            border-left: 4px solid #3182CE;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .guide-title {
+            font-weight: bold;
+            color: #3182CE;
+            margin-bottom: 6px;
+            font-size: 9.5pt;
+        }
+        .guide-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 9pt;
+        }
+ 
+        .signature-container {
+            display: table;
+            width: 100%;
+            margin-top: 40px;
+            page-break-inside: avoid;
+        }
+        .signature-row {
+            display: table-row;
+        }
+        .signature-cell {
+            display: table-cell;
+            width: 50%;
+            text-align: center;
+            padding: 20px;
+        }
+        .signature-line {
+            border-top: 1px solid #8B0000;
+            width: 80%;
+            margin: 40px auto 5px auto;
+        }
+        .signature-title {
+            font-size: 9pt;
+            color: #555;
+        }
+</style>
+</head>
+<body>
+ 
+    <div class="header-container">
+<div class="company-name">La Casa Libertadoras</div>
+<div class="doc-title">Formato de Auditoría: Madurez Tecnológica y Diagnóstico de Oportunidades en Inteligencia Artificial</div>
+</div>
+ 
+    <!-- Ficha Técnica de la Cafetería -->
+<div class="metadata-table">
+<div class="metadata-row">
+<div class="metadata-cell metadata-label">Establecimiento:</div>
+<div class="metadata-cell metadata-value" style="width: 30%;">La Casa Libertadoras</div>
+<div class="metadata-cell metadata-label">Ubicación Física:</div>
+<div class="metadata-cell metadata-value">Calle 27 # 27 - 40, Centro Histórico (Bajando del Parque Las Nieves hacia el Malecón), Girón, Santander.</div>
+</div>
+<div class="metadata-row">
+<div class="metadata-cell metadata-label">Concepto y Core:</div>
+<div class="metadata-cell metadata-value">Cafetería de especialidad y centro cultural. Homenaje a próceres (Manuela Beltrán, Antonia Santos) y salvaguarda de cafés D.O. Santander.</div>
+<div class="metadata-cell metadata-label">Reconocimiento:</div>
+<div class="metadata-cell metadata-value">Ganadora de los Premios La Barra a la "Mejor Propuesta de Café en Colombia".</div>
+</div>
+<div class="metadata-row">
+<div class="metadata-cell metadata-label">Canales de Ingreso:</div>
+<div class="metadata-cell metadata-value">Consumo presencial en barra (miércoles a lunes), venta de café en grano insignia y talleres/experiencias educativas intensivas.</div>
+<div class="metadata-cell metadata-label">Fecha del Diagnóstico:</div>
+<div class="metadata-cell metadata-value" style="color: #777;">____ / ____ / 2026</div>
+</div>
+</div>
+ 
+    <p><strong>Enfoque Estratégico de la Auditoría:</strong> El modelo de negocio de una cafetería galardonada de alta especialidad prioriza la experiencia de usuario en sala, la rotación fresca de inventarios de micro-lotes y la gestión de matrículas de eventos culturales. Esta auditoría busca mapear dónde la Inteligencia Artificial puede personalizar la hospitalidad, predecir el flujo turístico estacional del centro histórico y dinamizar la venta de sus ediciones insignia sin alterar su mística colonial.</p>
+ 
+    <div class="guide-box">
+<div class="guide-title">Criterio de Madurez Digital para Hospitalidad y Retail (1 a 5):</div>
+<ul class="guide-list">
+<li><strong>1 - Tradicional / Reactivo:</strong> Comandas a mano. Sin registros de preferencias de clientes o flujos turísticos.</li>
+<li><strong>2 - Digitalizado Básico:</strong> Uso de sistema POS local aislado para caja. Inventario manual al cierre de la jornada.</li>
+<li><strong>3 - Conectado / Omnicanal:</strong> POS en la nube integrado con control de stock de grano. Captura básica de datos (CRM) de alumnos de talleres.</li>
+<li><strong>4 - Optimizado / Automatizado:</strong> Historial de ventas centralizado para planeación de compras y marketing segmentado automatizado.</li>
+<li><strong>5 - Hiper-Personalizado e Inteligente:</strong> Algoritmos de predicción de afluencia en barra, menús dinámicos y compras predictivas a tostadores.</li>
+</ul>
+</div>
+ 
+    <h2>1. Matriz de Evaluación Tecnológica por Puntos de Experiencia</h2>
+<table class="eval-table">
+<thead>
+<tr>
+<th style="width: 28%;">Foco de Operación y Experiencia</th>
+<th style="width: 11%;">Infraestructura y Datos (1-5)</th>
+<th style="width: 11%;">Sistemas / Software (1-5)</th>
+<th style="width: 11%;">Cultura de Barra (1-5)</th>
+<th style="width: 39%;">Direccionamiento de Oportunidades con IA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong>Servicio en Barra y Calibración</strong><br>
+<span style="font-size: 8pt; color:#666;">Flujo de comandas, velocidad del servicio en mesa y control diario de recetas de extracción/filtrados en la casona colonial.</span>
+</td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td>
+<div style="font-size: 8pt; color: #8B0000; font-weight: bold;">Potencial de IA:</div>
+<div style="font-size: 8.5pt; text-align: justify;">Copilotos de barra basados en IA que sugieran variaciones menores en la molienda diaria cruzando datos de humedad interna de la estructura colonial y perfiles de taza esperados.</div>
+<div class="input-block">Software de comandas / POS actual...</div>
+</td>
+</tr>
+<tr>
+<td>
+<strong>Gestión de Ediciones Insignia y Stock D.O.</strong><br>
+<span style="font-size: 8pt; color:#666;">Rotación de las marcas de la casa (Manuela Beltrán, Catalina de Indias). Trazabilidad de inventarios con Denominación de Origen Santander.</span>
+</td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td>
+<div style="font-size: 8pt; color: #8B0000; font-weight: bold;">Potencial de IA:</div>
+<div style="font-size: 8.5pt; text-align: justify;">Modelos predictivos de series temporales para anticipar desabastecimientos de café verde o tostado, correlacionando el consumo diario con festivos y picos turísticos en Girón.</div>
+<div class="input-block">Control de stock de bolsas y frescura de grano...</div>
+</td>
+</tr>
+<tr>
+<td>
+<strong>Talleres e Interacción Cultural</strong><br>
+<span style="font-size: 8pt; color:#666;">Inscripción a talleres de cata y calibración de filtrados. Seguimiento e historial de entusiastas del café de especialidad.</span>
+</td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td>
+<div style="font-size: 8pt; color: #8B0000; font-weight: bold;">Potencial de IA:</div>
+<div style="font-size: 8.5pt; text-align: justify;">Agentes conversacionales inteligentes entrenados con el guion cultural de la casa para automatizar reservas de talleres por WhatsApp, precalificando el nivel del alumno.</div>
+<div class="input-block">Sistemas de reserva o CRM educativo...</div>
+</td>
+</tr>
+</tbody>
+</table>
+ 
+    <div style="page-break-before: auto;"></div>
+ 
+    <h2>2. Priorización de Proyectos de IA en Retail & Hospitalidad</h2>
+<table class="eval-table">
+<thead>
+<tr>
+<th style="width: 35%;">Iniciativa de IA Calificada</th>
+<th style="width: 20%;">Estructura de Datos Base<br><span style="font-size:7.5pt; font-weight:normal;">(¿Registros digitales limpios?)</span></th>
+<th style="width: 20%;">Complejidad del Despliegue<br><span style="font-size:7.5pt; font-weight:normal;">(Alta / Media / Baja)</span></th>
+<th style="width: 25%;">Impacto en Experiencia de Cliente<br><span style="font-size:7.5pt; font-weight:normal;">(Prioridad de Inversión)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="font-weight: bold; background-color: #FCF9F7;">Previsión de Demanda de Consumo por Flujo de Turismo Local</td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+</tr>
+<tr>
+<td style="font-weight: bold; background-color: #FCF9F7;">Automatización e Inscripción Inteligente a Talleres Culturales</td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+</tr>
+<tr>
+<td style="font-weight: bold; background-color: #FCF9F7;">Recomendador de Café Insignia según Preferencias del Consumidor</td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+</tr>
+</tbody>
+</table>
+ 
+    <h2>3. Conclusiones y Plan de Digitalización del Establecimiento</h2>
+<div class="input-block" style="min-height: 120px; padding: 10px;">
+        • Diagnóstico de la recolección de datos en punto de venta (¿El POS registra comportamiento de compra o solo facturación?):<br><br><br>
+        • Estrategia de captura de perfiles de clientes durante los talleres educativos de barismo y cata:<br><br><br>
+        • Hoja de ruta para habilitar reservas inteligentes en canales digitales (WhatsApp / Instagram):
+</div>
+ 
+    <div class="signature-container">
+<div class="signature-row">
+<div class="signature-cell">
+<div class="signature-line"></div>
+<div style="font-weight: bold; color: #8B0000;">Dirección General / Administración</div>
+<div class="signature-title">La Casa Libertadoras</div>
+</div>
+<div class="signature-cell">
+<div class="signature-line"></div>
+<div style="font-weight: bold; color: #8B0000;">____________________________________</div>
+<div class="signature-title">Auditor / Consultor de Transformación Digital e IA</div>
+</div>
+</div>
+</div>
+ 
+</body>
+</html>

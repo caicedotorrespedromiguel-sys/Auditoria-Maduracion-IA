@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Auditoría de Madurez Tecnológica - Calma Specialty Roasters</title>
+<style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        @page {
+            size: A4;
+            margin: 18mm 15mm;
+            @bottom-right {
+                content: "Página " counter(page) " de " counter(pages);
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 8pt;
+                color: #8c8c8c;
+            }
+            @bottom-left {
+                content: "Calma Specialty Roasters - Diagnóstico Tecnológico IA";
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 8pt;
+                color: #8c8c8c;
+            }
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #2c2c2c;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        /* Encabezado Principal */
+        .header-container {
+            border-bottom: 3px solid #8B4513;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+        .company-name {
+            font-size: 20pt;
+            font-weight: bold;
+            color: #8B4513;
+            text-transform: uppercase;
+            margin: 0 0 4px 0;
+            letter-spacing: 0.5px;
+        }
+        .doc-title {
+            font-size: 13pt;
+            font-weight: 600;
+            color: #4a4a4a;
+            margin: 0 0 10px 0;
+        }
+
+        /* Ficha Técnica de la Empresa */
+        .metadata-table {
+            display: table;
+            width: 100%;
+            margin-bottom: 25px;
+            border-collapse: collapse;
+            background-color: #FAF8F5;
+            border: 1px solid #E6D8CE;
+        }
+        .metadata-row {
+            display: table-row;
+        }
+        .metadata-cell {
+            display: table-cell;
+            padding: 8px 12px;
+            border: 1px solid #E6D8CE;
+            vertical-align: top;
+        }
+        .metadata-label {
+            font-weight: bold;
+            color: #8B4513;
+            width: 20%;
+            font-size: 9pt;
+            text-transform: uppercase;
+        }
+        .metadata-value {
+            font-size: 9.5pt;
+            color: #333333;
+        }
+
+        /* Secciones */
+        h2 {
+            font-size: 13pt;
+            color: #8B4513;
+            border-left: 4px solid #CD853F;
+            padding-left: 8px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            page-break-after: avoid;
+        }
+
+        /* Tablas de Evaluación */
+        .eval-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .eval-table th {
+            background-color: #8B4513;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 9pt;
+            text-transform: uppercase;
+            padding: 10px 8px;
+            border: 1px solid #5C2E0B;
+            text-align: center;
+        }
+        .eval-table td {
+            border: 1px solid #E6D8CE;
+            padding: 10px 8px;
+            font-size: 9pt;
+            vertical-align: top;
+        }
+        .eval-table tr:nth-child(even) {
+            background-color: #FDFBF7;
+        }
+
+        .input-block {
+            border: 1px dashed #CD853F;
+            background-color: #FFFDF9;
+            min-height: 45px;
+            margin-top: 5px;
+            padding: 6px;
+            color: #777;
+            font-style: italic;
+            font-size: 8.5pt;
+        }
+        .score-box {
+            border: 1px solid #CD853F;
+            width: 40px;
+            height: 25px;
+            text-align: center;
+            margin: 5px auto 0 auto;
+            background-color: #fff;
+        }
+
+        .guide-box {
+            background-color: #F0F4F8;
+            border-left: 4px solid #2B6CB0;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .guide-title {
+            font-weight: bold;
+            color: #2B6CB0;
+            margin-bottom: 6px;
+            font-size: 9.5pt;
+        }
+        .guide-list {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 9pt;
+        }
+ 
+        .signature-container {
+            display: table;
+            width: 100%;
+            margin-top: 40px;
+            page-break-inside: avoid;
+        }
+        .signature-row {
+            display: table-row;
+        }
+        .signature-cell {
+            display: table-cell;
+            width: 50%;
+            text-align: center;
+            padding: 20px;
+        }
+        .signature-line {
+            border-top: 1px solid #8B4513;
+            width: 80%;
+            margin: 40px auto 5px auto;
+        }
+        .signature-title {
+            font-size: 9pt;
+            color: #555;
+        }
+</style>
+</head>
+<body>
+ 
+    <div class="header-container">
+<div class="company-name">Calma Specialty Roasters</div>
+<div class="doc-title">Formato de Auditoría: Madurez Tecnológica y Diagnóstico de Oportunidades en Inteligencia Artificial</div>
+</div>
+ 
+    <!-- Ficha Técnica Basada en Datos de Entrada -->
+<div class="metadata-table">
+<div class="metadata-row">
+<div class="metadata-cell metadata-label">Empresa:</div>
+<div class="metadata-cell metadata-value" style="width: 30%;">Calma Specialty Roasters (Calma)</div>
+<div class="metadata-cell metadata-label">Ubicación / Centro:</div>
+<div class="metadata-cell metadata-value">Vía Lagunetas, Bodega #12, Girón, Santander, Colombia.</div>
+</div>
+<div class="metadata-row">
+<div class="metadata-cell metadata-label">Modelo Operativo:</div>
+<div class="metadata-cell metadata-value">Centro de tueste, capacitación, desarrollo de procesos y asesoría de marcas de café de especialidad.</div>
+<div class="metadata-cell metadata-label">Canal Comercial / Aliado:</div>
+<div class="metadata-cell metadata-value">Café Casa Libertadoras (Centro Histórico de Girón - Cl. 27 #27-40).</div>
+</div>
+<div class="metadata-row">
+<div class="metadata-cell metadata-label">Perfil Técnico:</div>
+<div class="metadata-cell metadata-value">Ganadores del #RetoCluster. Manejo de perfiles de taza > 87 SCA (Orígenes Barichara, Curití).</div>
+<div class="metadata-cell metadata-label">Fecha de Evaluación:</div>
+<div class="metadata-cell metadata-value" style="color: #777;">____ / ____ / 2026</div>
+</div>
+</div>
+ 
+    <p><strong>Enfoque Estratégico del Instrumento:</strong> La operación de Calma se fundamenta en consistencia de micro-lotes, transferencia de conocimiento científico y la experiencia sensorial en canales aliados. Esta auditoría busca identificar cómo la Inteligencia Artificial puede optimizar el tueste artesanal guiado por datos, enriquecer la educación y predecir la demanda de tueste para la red de aliados de especialidad.</p>
+ 
+    <div class="guide-box">
+<div class="guide-title">Escala de Evaluación de Madurez Tecnológica:</div>
+<ul class="guide-list">
+<li><strong>1 - Manual / Intuitivo:</strong> Control térmico visual. Registros de catación e inventarios en bitácora física.</li>
+<li><strong>2 - Digitalizado Básico:</strong> Software de tueste local conectado por USB (ej. Artisan/Cropster aislado). Excel local.</li>
+<li><strong>3 - Conectado / Centralizado:</strong> Curvas de tueste integradas en la nube. Historial SCA digitalizado y CRM básico.</li>
+<li><strong>4 - Optimizado / Automatizado:</strong> Replicabilidad guiada por datos interconectados con variables ambientales (humedad).</li>
+<li><strong>5 - Predictivo / Autónomo:</strong> Algoritmos de ajuste de curvas de tueste en tiempo real en función del comportamiento molecular.</li>
+</ul>
+</div>
+ 
+    <h2>1. Matriz de Evaluación por Líneas de Operación de Especialidad</h2>
+<table class="eval-table">
+<thead>
+<tr>
+<th style="width: 28%;">Línea de Operación Crítica</th>
+<th style="width: 11%;">Datos e Infraestructura (1-5)</th>
+<th style="width: 11%;">Software / Equipos (1-5)</th>
+<th style="width: 11%;">Talento / Cultura (1-5)</th>
+<th style="width: 39%;">Direccionamiento de Oportunidades con IA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong>Proceso de Tueste de Especialidad</strong><br>
+<span style="font-size: 8pt; color:#666;">Seguimiento a curvas ROR, velocidad de tambor y replicabilidad de lotes del #RetoCluster.</span>
+</td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td>
+<div style="font-size: 8pt; color: #8B4513; font-weight: bold;">Potencial de IA:</div>
+<div style="font-size: 8.5pt; text-align: justify;">Modelos predictivos para estimar el desarrollo térmico ideal y "First Crack" en función de la humedad ambiental y orígenes (Barichara/Curití).</div>
+<div class="input-block">Sensores e integración de la tostadora actual...</div>
+</td>
+</tr>
+<tr>
+<td>
+<strong>Laboratorio de Catación y Calidad</strong><br>
+<span style="font-size: 8pt; color:#666;">Control y archivo de protocolos SCA para lotes superiores a 87 puntos.</span>
+</td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td>
+<div style="font-size: 8pt; color: #8B4513; font-weight: bold;">Potencial de IA:</div>
+<div style="font-size: 8.5pt; text-align: justify;">Modelos de procesamiento de lenguaje natural (NLP) para estandarizar descriptores de taza y automatizar la creación de perfiles comerciales para marcas.</div>
+<div class="input-block">Método actual de registro de cataciones...</div>
+</td>
+</tr>
+<tr>
+<td>
+<strong>Centro de Capacitación y Desarrollo</strong><br>
+<span style="font-size: 8pt; color:#666;">Gestión de alumnos de barismo, cursos de tueste y asesorías técnicas de marca.</span>
+</td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td>
+<div style="font-size: 8pt; color: #8B4513; font-weight: bold;">Potencial de IA:</div>
+<div style="font-size: 8.5pt; text-align: justify;">Asistentes virtuales inteligentes entrenados con las guías de Calma para dar soporte técnico post-curso 24/7 a los egresados en sus barras.</div>
+<div class="input-block">Base de datos de alumnos o CRM...</div>
+</td>
+</tr>
+<tr>
+<td>
+<strong>Sincronización con Tienda Aliada (Casa Libertadoras)</strong><br>
+<span style="font-size: 8pt; color:#666;">Consumo en barra del centro histórico, desgasificación del grano y frescura óptima de stock.</span>
+</td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td><div class="score-box"></div></td>
+<td>
+<div style="font-size: 8pt; color: #8B4513; font-weight: bold;">Potencial de IA:</div>
+<div style="font-size: 8.5pt; text-align: justify;">Modelos de series temporales para predecir la demanda semanal de tueste en el aliado comercial según tendencias históricas y flujos turísticos.</div>
+<div class="input-block">Comunicación de inventarios Bodega vs Tienda...</div>
+</td>
+</tr>
+</tbody>
+</table>
+ 
+    <div style="page-break-before: auto;"></div>
+ 
+    <h2>2. Estrategia de Priorización de Proyectos de IA</h2>
+<table class="eval-table">
+<thead>
+<tr>
+<th style="width: 35%;">Iniciativa de IA Propuesta</th>
+<th style="width: 20%;">Madurez de Datos Base<br><span style="font-size:7.5pt; font-weight:normal;">(¿Registros digitales?)</span></th>
+<th style="width: 20%;">Complejidad Técnica<br><span style="font-size:7.5pt; font-weight:normal;">(Alta / Media / Baja)</span></th>
+<th style="width: 25%;">Retorno de Valor de Marca<br><span style="font-size:7.5pt; font-weight:normal;">(Prioridad de Ejecución)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="font-weight: bold; background-color: #FAF8F5;">Consistencia Predictiva de Curvas en Tuestes Ganadores</td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+</tr>
+<tr>
+<td style="font-weight: bold; background-color: #FAF8F5;">Copiloto de IA para Soporte Técnico de Alumnos y Baristas</td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+</tr>
+<tr>
+<td style="font-weight: bold; background-color: #FAF8F5;">Optimización Logística de Frescura para Aliado (Casa Libertadoras)</td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+<td><div class="input-block" style="min-height: 35px;"></div></td>
+</tr>
+</tbody>
+</table>
+ 
+    <h2>3. Conclusiones y Plan de Captura de Datos de Especialidad</h2>
+<div class="input-block" style="min-height: 120px; padding: 10px;">
+        • Estado actual de la centralización de datos (Tueste vs. Catación vs. Ventas Aliadas):<br><br><br>
+        • Capacidad técnica del equipo humano para interactuar con interfaces inteligentes:<br><br><br>
+        • Próximo paso clave (Ej: Integrar bitácoras de tueste locales a almacenamiento en la nube):
+</div>
+ 
+    <div class="signature-container">
+<div class="signature-row">
+<div class="signature-cell">
+<div class="signature-line"></div>
+<div style="font-weight: bold; color: #8B4513;">Dirección de Operaciones / Tostador Líder</div>
+<div class="signature-title">Calma Specialty Roasters</div>
+</div>
+<div class="signature-cell">
+<div class="signature-line"></div>
+<div style="font-weight: bold; color: #8B4513;">____________________________________</div>
+<div class="signature-title">Consultor / Auditor en Tecnología e IA</div>
+</div>
+</div>
+</div>
+ 
+</body>
+</html>
+ 
