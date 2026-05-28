@@ -1,0 +1,52 @@
+name: "Nueva Auditoría de Maduración IA"
+description: "Formulario para diagnosticar empresas y sectores económicos."
+title: "[AUDITORÍA]: "
+labels: ["diagnóstico"]
+body:
+  - type: input
+    id: empresa
+    attributes:
+      label: "Nombre de la Empresa"
+      placeholder: "Ej: Calma Specialty Roasters"
+    validations:
+      required: true
+  - type: dropdown
+    id: sector
+    attributes:
+      label: "Sector Económico"
+      options:
+        - Agropecuario
+        - Retail / Comercio
+        - Salud
+        - Fintech / Finanzas
+        - Industria / Manufactura
+        - Turismo y Hospitalidad
+  - type: textarea
+    id: core
+    attributes:
+      label: "Concepto Clave del Negocio"
+      placeholder: "Describe qué hace la empresa..."
+  - type: dropdown
+    id: infraestructura
+    attributes:
+      label: "Nivel de Infraestructura de Datos"
+      options:
+        - "1: Manual (Papel / Verbal)"
+        - "2: Digital Básico (Excel local)"
+        - "3: Conectado (Cloud / ERP)"
+        - "4: Optimizado (Automatizaciones)"
+        - "5: Inteligente (IA Predictiva)"
+  - type: checkboxes
+    id: barreras
+    attributes:
+      label: "Barreras de Adopción Detectadas"
+      options:
+        - label: "Falta de presupuesto"
+        - label: "Resistencia al cambio"
+        - label: "Datos desordenados o en silos"
+        - label: "Infraestructura obsoleta"
+  - type: textarea
+    id: iniciativa
+    attributes:
+      label: "Iniciativa de IA Sugerida (Hoja de Ruta)"
+      placeholder: "Ej: Implementar un Agente IA para atención al cliente..."
