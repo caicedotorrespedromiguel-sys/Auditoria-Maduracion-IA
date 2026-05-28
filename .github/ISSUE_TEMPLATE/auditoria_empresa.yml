@@ -1,135 +1,102 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auditoría IA - Sector Café & Industria</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        :root { --cafe-oscuro: #4b2c20; --oro: #d4af37; --rojo-libertador: #8B0000; --fondo: #f9f7f2; }
-        body { font-family: 'Garamond', serif; background: var(--fondo); padding: 20px; color: #333; }
-        .container { max-width: 1100px; margin: auto; background: white; padding: 40px; border: 1px solid #e0e0e0; border-radius: 5px; }
-        .header { border-bottom: 3px solid var(--rojo-libertador); margin-bottom: 30px; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        h1 { color: var(--rojo-libertador); margin: 0; font-size: 1.8em; }
-        .grid { display: grid; grid-template-columns: 350px 1fr; gap: 40px; }
-        .control-group { margin-bottom: 20px; background: #fafafa; padding: 15px; border-radius: 8px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); }
-        label { font-weight: bold; display: block; margin-bottom: 8px; color: var(--cafe-oscuro); }
-        select, input[type="range"] { width: 100%; margin-top: 5px; }
-        #radarChart { max-height: 450px; }
-        .rec-box { margin-top: 30px; background: var(--cafe-oscuro); color: #fdfdfd; padding: 25px; border-radius: 10px; border-left: 10px solid var(--oro); }
-        .rec-item { margin-bottom: 15px; line-height: 1.5; border-bottom: 1px solid #5d4037; padding-bottom: 10px; }
-        .rec-item b { color: var(--oro); }
-        .btn-print { background: var(--rojo-libertador); color: white; border: none; padding: 12px 20px; cursor: pointer; font-weight: bold; }
-        @media print { .btn-print, .controls { display: none; } .container { border: none; } }
-    </style>
-</head>
-<body>
+name: Auditoría de Madurez IA
+description: Registra una auditoría de madurez en IA para una empresa
+title: "Auditoría IA - [Nombre Empresa]"
+labels: ["auditoría", "madurez-ia"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Auditoría Dinámica de Madurez IA
+        Completa esta auditoría evaluando los niveles de madurez en IA de la empresa (escala 1-5)
 
-<div class="container">
-    <div class="header">
-        <div>
-            <h1>MÉTODO DE MADURACIÓN TECNOLÓGICA</h1>
-            <small>Basado en Protocolos Casa Libertadoras & El Guane</small>
-        </div>
-        <button class="btn-print" onclick="window.print()">GENERAR REPORTE OFICIAL</button>
-    </div>
+  - type: input
+    id: empresa
+    attributes:
+      label: Nombre de la Empresa
+      placeholder: "Ej: Acme Corporation"
+    validations:
+      required: true
 
-    <div class="grid">
-        <div class="controls">
-            <div class="control-group">
-                <label>📍 Sector de la Auditoría</label>
-                <select id="sector" onchange="updateChart()">
-                    <option value="cafe">Café de Especialidad (Retail)</option>
-                    <option value="trilla">Trilla y Exportación (Industria)</option>
-                    <option value="servicios">Servicios / Otros</option>
-                </select>
-            </div>
-            <div class="control-group">
-                <label>🖥️ Infraestructura: <span id="v1">2</span></label>
-                <input type="range" id="infra" min="1" max="5" value="2" oninput="updateChart()">
-            </div>
-            <div class="control-group">
-                <label>☕ Calidad de Datos/Registros: <span id="v2">2</span></label>
-                <input type="range" id="datos" min="1" max="5" value="2" oninput="updateChart()">
-            </div>
-            <div class="control-group">
-                <label>🎓 Talento (Cultura IA): <span id="v3">2</span></label>
-                <input type="range" id="talento" min="1" max="5" value="2" oninput="updateChart()">
-            </div>
-            <div class="control-group">
-                <label>🔗 Integración (APIs): <span id="v4">2</span></label>
-                <input type="range" id="api" min="1" max="5" value="2" oninput="updateChart()">
-            </div>
-        </div>
+  - type: dropdown
+    id: infraestructura
+    attributes:
+      label: Infraestructura de Datos
+      description: Nivel de madurez de la infraestructura de datos
+      options:
+        - "1 - Muy Bajo"
+        - "2 - Bajo"
+        - "3 - Medio"
+        - "4 - Alto"
+        - "5 - Muy Alto"
+    validations:
+      required: true
 
-        <div class="chart-container">
-            <canvas id="radarChart"></canvas>
-        </div>
-    </div>
+  - type: dropdown
+    id: calidad_datos
+    attributes:
+      label: Calidad de Registros
+      description: Nivel de calidad de los datos registrados
+      options:
+        - "1 - Muy Bajo"
+        - "2 - Bajo"
+        - "3 - Medio"
+        - "4 - Alto"
+        - "5 - Muy Alto"
+    validations:
+      required: true
 
-    <div class="rec-box">
-        <h3>📋 HOJA DE RUTA ESTRATÉGICA PERSONALIZADA</h3>
-        <div id="lista-rec">Seleccione los niveles para generar el plan...</div>
-    </div>
-</div>
+  - type: dropdown
+    id: talento_humano
+    attributes:
+      label: Talento Humano
+      description: Nivel de capacidad en talento humano para IA
+      options:
+        - "1 - Muy Bajo"
+        - "2 - Bajo"
+        - "3 - Medio"
+        - "4 - Alto"
+        - "5 - Muy Alto"
+    validations:
+      required: true
 
-<script>
-    let ctx = document.getElementById('radarChart').getContext('2d');
-    let myChart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: ['Infraestructura', 'Datos/Trazabilidad', 'Talento Humano', 'Conectividad/APIs', 'Readiness IA'],
-            datasets: [{
-                label: 'Nivel Actual',
-                data: [2, 2, 2, 2, 2],
-                backgroundColor: 'rgba(139, 0, 0, 0.3)',
-                borderColor: '#8B0000',
-                pointBackgroundColor: '#d4af37',
-                borderWidth: 3
-            }]
-        },
-        options: { scales: { r: { min: 0, max: 5, ticks: { display: false }, grid: { color: '#e0e0e0' } } } }
-    });
+  - type: dropdown
+    id: integracion_apis
+    attributes:
+      label: Integración (APIs)
+      description: Nivel de integración y APIs disponibles
+      options:
+        - "1 - Muy Bajo"
+        - "2 - Bajo"
+        - "3 - Medio"
+        - "4 - Alto"
+        - "5 - Muy Alto"
+    validations:
+      required: true
 
-    function updateChart() {
-        const v = [
-            parseInt(document.getElementById('infra').value),
-            parseInt(document.getElementById('datos').value),
-            parseInt(document.getElementById('talento').value),
-            parseInt(document.getElementById('api').value)
-        ];
-        const readiness = (v[0] + v[1] + v[3]) / 3;
-        myChart.data.datasets[0].data = [...v, readiness.toFixed(1)];
-        myChart.update();
+  - type: textarea
+    id: hallazgos
+    attributes:
+      label: Hallazgos Principales
+      description: Describe los hallazgos principales de la auditoría
+      placeholder: "Detalla los hallazgos clave encontrados durante la auditoría..."
+    validations:
+      required: true
 
-        document.getElementById('v1').innerText = v[0];
-        document.getElementById('v2').innerText = v[1];
-        document.getElementById('v3').innerText = v[2];
-        document.getElementById('v4').innerText = v[3];
+  - type: textarea
+    id: recomendaciones
+    attributes:
+      label: Recomendaciones
+      description: Proporciona recomendaciones para mejorar la madurez en IA
+      placeholder: "Sugiere las mejoras necesarias..."
+    validations:
+      required: false
 
-        generarPlan(v, document.getElementById('sector').value);
-    }
-
-    function generarPlan(v, sector) {
-        const lista = document.getElementById('lista-rec');
-        lista.innerHTML = "";
-        
-        // RECOMENDACIONES POR SECTOR
-        if(sector === 'cafe') {
-            if(v[1] < 3) lista.innerHTML += "<div class='rec-item'><b>Foco Café:</b> Implementar captura de perfiles sensoriales y origen en el POS (estilo Casa Libertadoras).</div>";
-            if(v[3] < 3) lista.innerHTML += "<div class='rec-item'><b>Make/Zapier:</b> Conectar reservas de catas/talleres con CRM para fidelización automática.</div>";
-        } else if(sector === 'trilla') {
-            if(v[0] < 3) lista.innerHTML += "<div class='rec-item'><b>Foco Trilla:</b> Digitalizar tickets de báscula y humedad mediante sensores IoT (estilo El Guane).</div>";
-            if(v[3] >= 4) lista.innerHTML += "<div class='rec-item'><b>IA Avanzada:</b> Implementar visión artificial para clasificación de defectos en pergamino.</div>";
-        }
-
-        // RECOMENDACIONES TÉCNICAS GENERALES
-        if(v[0] < 3) lista.innerHTML += "<div class='rec-item'>⚠️ <b>Sistemas:</b> Migrar registros locales a entornos Cloud (Google/Azure) para habilitar Agentes.</div>";
-        if(v[3] < 3) lista.innerHTML += "<div class='rec-item'>⚙️ <b>Automatización:</b> Configurar flujos en <b>n8n</b> para eliminar tareas manuales de facturación.</div>";
-        if(v[1] >= 4 && v[3] >= 4) lista.innerHTML += "<div class='rec-item'>🤖 <b>IA Gen:</b> Empresa lista para un Agente IA que analice tendencias de precios internacionales.</div>";
-    }
-
-    updateChart();
-</script>
-</body>
-</html>
+  - type: checkboxes
+    id: verificacion
+    attributes:
+      label: Verificación
+      options:
+        - label: "He completado la auditoría de forma exhaustiva"
+          required: true
+        - label: "Los datos proporcionados son precisos"
+          required: true
